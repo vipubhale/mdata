@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectStreams xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3" xmlns="urn:mtconnect.org:MTConnectStreams:1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectStreams:1.3 /schemas/MTConnectStreams_1.3.xsd">
+  <Header creationTime="2017-07-29T02:39:00Z" sender="mtcagent" instanceId="1490681234" version="1.3.0.9" bufferSize="131072" nextSequence="2418405371" firstSequence="2418274299" lastSequence="2418405370"/>
+  <Streams>
+    <DeviceStream name="VMC-3Axis" uuid="000">
+      <ComponentStream component="Controller" name="controller" componentId="cn1">
+        <Events>
+          <EmergencyStop dataItemId="estop" timestamp="2017-07-29T02:36:56.105623" sequence="2418378563">ARMED</EmergencyStop>
+          <Message dataItemId="msg" timestamp="2017-03-28T06:07:14.731817Z" sequence="35">UNAVAILABLE</Message>
+        </Events>
+        <Condition>
+          <Normal dataItemId="clp" timestamp="2017-07-29T02:24:50.635895" sequence="2418200605" type="LOGIC_PROGRAM"/>
+          <Unavailable dataItemId="motion" timestamp="2017-03-28T06:07:14.731817Z" sequence="34" type="MOTION_PROGRAM"/>
+          <Unavailable dataItemId="system" timestamp="2017-03-28T06:07:14.731817Z" sequence="38" type="SYSTEM"/>
+        </Condition>
+      </ComponentStream>
+      <ComponentStream component="Path" name="path" componentId="pth">
+        <Samples>
+          <PathFeedrate dataItemId="Fovr" timestamp="2017-07-29T02:24:50.634658" sequence="2418200593">100.0000000000</PathFeedrate>
+          <PathFeedrate dataItemId="Frt" timestamp="2017-07-29T02:39:00.278738" sequence="2418405294">0.4</PathFeedrate>
+          <PathPosition dataItemId="Ppos" timestamp="2017-03-28T06:07:14.731817Z" sequence="5" subType="ACTUAL">UNAVAILABLE</PathPosition>
+        </Samples>
+        <Events>
+          <Block dataItemId="cn2" timestamp="2017-07-29T02:39:00.253720" name="block" sequence="2418405284">X-0.115699 Y1.788261</Block>
+          <ControllerMode dataItemId="cn3" timestamp="2017-07-29T02:24:50.634658" name="mode" sequence="2418200591">AUTOMATIC</ControllerMode>
+          <Line dataItemId="cn4" timestamp="2017-07-29T02:39:00.253720" name="line" sequence="2418405278">111</Line>
+          <Program dataItemId="cn5" timestamp="2017-07-29T02:24:50.634658" name="program" sequence="2418200590">FLANGE_CAM.NGC</Program>
+          <Execution dataItemId="cn6" timestamp="2017-07-29T02:38:05.789873" name="execution" sequence="2418390364">ACTIVE</Execution>
+          <ToolId dataItemId="cnt1" timestamp="2017-03-28T06:07:14.731817Z" name="tool_id" sequence="24">UNAVAILABLE</ToolId>
+        </Events>
+      </ComponentStream>
+    </DeviceStream>
+  </Streams>
+</MTConnectStreams>
