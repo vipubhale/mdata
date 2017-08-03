@@ -3,7 +3,7 @@ package aug.manas.mtconnect.mdata.model;
 public class MachineData {
 	private String machineId;
 	private String machineName;
-	private int partCount;
+	private String partCount;
 	private String activeAxes;
 	
 	private String s1Speed;
@@ -21,7 +21,7 @@ public class MachineData {
 		
 	}
 
-	public MachineData(String machineId, String machineName, int partCount, String activeAxes, String s1Speed,
+	public MachineData(String machineId, String machineName, String partCount, String activeAxes, String s1Speed,
 			String s1Load, String sSpeedOvr, String s1Servo, String servo, String comms, String logic, String motion,
 			String system) {
 		super();
@@ -56,11 +56,11 @@ public class MachineData {
 		this.machineName = machineName;
 	}
 
-	public int getPartCount() {
+	public String getPartCount() {
 		return partCount;
 	}
 
-	public void setPartCount(int partCount) {
+	public void setPartCount(String partCount) {
 		this.partCount = partCount;
 	}
 

@@ -1,8 +1,8 @@
 package aug.manas.mtconnect.mdata.service;
 
 import java.math.BigInteger;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.bind.JAXBElement;
@@ -33,7 +33,7 @@ public class MDataService {
 	private ConfigBean config;
 
 	public ArrayList<MachineData> callAgent() throws AgentNotAvailableException {
-		HashMap<String, ArrayList<String>> machineDataMap = new HashMap<String, ArrayList<String>>();
+//		HashMap<String, ArrayList<String>> machineDataMap = new HashMap<String, ArrayList<String>>();
 
 		ArrayList<MachineData> alMachineData = new ArrayList<MachineData>();
 		RestTemplate restTemplate = new RestTemplate();
@@ -55,21 +55,25 @@ public class MDataService {
 		
 		for (DeviceStreamType deviceStreamType : listDeviceStreamType) {
 			MachineData machine = new MachineData();
-
-			machine.setMachineName(deviceStreamType.getName());
-			machine.setMachineId(deviceStreamType.getUuid());
-
-			if (machineDataMap.get("machineName") == null) {
-				machineDataMap.put("machineName", new ArrayList<String>());
-			} else {
-				machineDataMap.get("machineName").add(deviceStreamType.getName());
+			
+			if (deviceStreamType != null && deviceStreamType.getName() != null){
+				machine.setMachineName(deviceStreamType.getName());
 			}
-
-			if (machineDataMap.get("machineId") == null) {
-				machineDataMap.put("machineId", new ArrayList<String>());
-			} else {
-				machineDataMap.get("machineId").add(deviceStreamType.getUuid());
+			if (deviceStreamType != null && deviceStreamType.getUuid() != null){
+				machine.setMachineId(deviceStreamType.getUuid());
 			}
+//
+//			if (machineDataMap.get("machineName") == null) {
+//				machineDataMap.put("machineName", new ArrayList<String>());
+//			} else {
+//				machineDataMap.get("machineName").add(deviceStreamType.getName());
+//			}
+//
+//			if (machineDataMap.get("machineId") == null) {
+//				machineDataMap.put("machineId", new ArrayList<String>());
+//			} else {
+//				machineDataMap.get("machineId").add(deviceStreamType.getUuid());
+//			}
 
 			List<ComponentStreamType> listComponentStream = deviceStreamType.getComponentStream();
 
@@ -85,14 +89,18 @@ public class MDataService {
 						// PartCount Element
 						case "part_count": {
 							if (eventType.getValue().getValue() != null && eventType.getValue().getValue() != "") {
-								int partCount = Integer.parseInt(eventType.getValue().getValue());
-								// System.out.println("Part count is :: " + partCount);
-								machine.setPartCount(partCount);
-								if (machineDataMap.get("partCount") == null) {
-									machineDataMap.put("partCount", new ArrayList<String>());
-								} else {
-									machineDataMap.get("partCount").add(eventType.getValue().getValue());
+								String partCount = eventType.getValue().getValue();
+								if (partCount != null){
+									machine.setPartCount(partCount);
 								}
+								else {
+									machine.setPartCount("");
+								}
+//								if (machineDataMap.get("partCount") == null) {
+//									machineDataMap.put("partCount", new ArrayList<String>());
+//								} else {
+//									machineDataMap.get("partCount").add(eventType.getValue().getValue());
+//								}
 
 							}
 							break;
@@ -101,13 +109,18 @@ public class MDataService {
 							if (eventType.getValue().getValue() != null && eventType.getValue().getValue() != "") {
 								String activeAxesInPath = eventType.getValue().getValue();
 //								// System.out.println(activeAxesInPath);
-								machine.setActiveAxes(activeAxesInPath);
-
-								if (machineDataMap.get("activeAxes") == null) {
-									machineDataMap.put("activeAxes", new ArrayList<String>());
-								} else {
-									machineDataMap.get("activeAxes").add(eventType.getValue().getValue());
+								if (activeAxesInPath != null) {
+									machine.setActiveAxes(activeAxesInPath);
 								}
+								else {
+									machine.setActiveAxes("");
+								}
+
+//								if (machineDataMap.get("activeAxes") == null) {
+//									machineDataMap.put("activeAxes", new ArrayList<String>());
+//								} else {
+//									machineDataMap.get("activeAxes").add(eventType.getValue().getValue());
+//								}
 							}
 							break;
 						}
@@ -126,35 +139,47 @@ public class MDataService {
 								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
 								if (sampleType.getValue().getValue() != null ){
 									machine.setS1Speed(sampleType.getValue().getValue());
-									if (machineDataMap.get("s1Speed") == null) {
-										machineDataMap.put("s1Speed", new ArrayList<String>());
-									} else {
-										machineDataMap.get("s1Speed").add(sampleType.getValue().getValue());
-									}
+//									if (machineDataMap.get("s1Speed") == null) {
+//										machineDataMap.put("s1Speed", new ArrayList<String>());
+//									} else {
+//										machineDataMap.get("s1Speed").add(sampleType.getValue().getValue());
+//									}
+								}
+								else {
+									machine.setS1Speed("");
 								}
 								break;
 							}
 							case "S1load": {
 								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
-								if (sampleType.getValue().getValue() != null ){
-								machine.setS1Load(sampleType.getValue().getValue());
-								if (machineDataMap.get("s1Load") == null) {
-									machineDataMap.put("s1Load", new ArrayList<String>());
-								} else {
-									machineDataMap.get("s1Load").add(sampleType.getValue().getValue());
+								if (sampleType.getValue().getValue() != null )
+								{
+									machine.setS1Load(sampleType.getValue().getValue());
+//								if (machineDataMap.get("s1Load") == null) {
+//									machineDataMap.put("s1Load", new ArrayList<String>());
+//								} else {
+//									machineDataMap.get("s1Load").add(sampleType.getValue().getValue());
+//								}
 								}
+								else {
+									machine.setS1Load("");
 								}
 								break;
 							}
 							case "SspeedOvr": {
 								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
-								if (sampleType.getValue().getValue() != null ){
-								machine.setsSpeedOvr(sampleType.getValue().getValue());
-								if (machineDataMap.get("sSpeedOvr") == null) {
-									machineDataMap.put("sSpeedOvr", new ArrayList<String>());
-								} else {
-									machineDataMap.get("sSpeedOvr").add(sampleType.getValue().getValue());
+								if (sampleType.getValue().getValue() != null )
+								{
+									machine.setsSpeedOvr(sampleType.getValue().getValue());
+//								if (machineDataMap.get("sSpeedOvr") == null) {
+//									machineDataMap.put("sSpeedOvr", new ArrayList<String>());
+//								} else {
+//									machineDataMap.get("sSpeedOvr").add(sampleType.getValue().getValue());
+//								}
 								}
+								else {
+									machine.setsSpeedOvr("");
+
 								}
 								break;
 							}
@@ -173,13 +198,16 @@ public class MDataService {
 							switch (conditionTypeName) {
 								case "S1servo": {
 									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setS1Servo(conditionType.getValue().getValue());
-										if (machineDataMap.get("s1Servo") == null) {
-											machineDataMap.put("s1Servo", new ArrayList<String>());
-										} else {
-											machineDataMap.get("s1Servo").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("s1Servo") == null) {
+//											machineDataMap.put("s1Servo", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("s1Servo").add(conditionType.getValue().getValue());
+//										}
+									}
+									else {
+										machine.setS1Servo("");
 									}
 									break;
 								}
@@ -199,61 +227,75 @@ public class MDataService {
 							switch (conditionTypeName) {
 								case "servo": {
 									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setServo(conditionType.getValue().getValue());
-										if (machineDataMap.get("servo") == null) {
-											machineDataMap.put("servo", new ArrayList<String>());
-										} else {
-											machineDataMap.get("servo").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("servo") == null) {
+//											machineDataMap.put("servo", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("servo").add(conditionType.getValue().getValue());
+//										}
+									}
+									else {
+										machine.setServo("");
+
 									}
 									break;
 								}
 								case "comms": {
 									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setComms(conditionType.getValue().getValue());
-										if (machineDataMap.get("comms") == null) {
-											machineDataMap.put("comms", new ArrayList<String>());
-										} else {
-											machineDataMap.get("comms").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("comms") == null) {
+//											machineDataMap.put("comms", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("comms").add(conditionType.getValue().getValue());
+//										}
+									}else {
+										machine.setComms("");
 									}
 									break;
 								}
 								case "logic": {
 									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setLogic(conditionType.getValue().getValue());
-										if (machineDataMap.get("logic") == null) {
-											machineDataMap.put("logic", new ArrayList<String>());
-										} else {
-											machineDataMap.get("logic").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("logic") == null) {
+//											machineDataMap.put("logic", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("logic").add(conditionType.getValue().getValue());
+//										}
+									}
+									else {
+										machine.setLogic("");
 									}
 									break;
 								}
 								case "motion": {
 									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setMotion(conditionType.getValue().getValue());
-										if (machineDataMap.get("motion") == null) {
-											machineDataMap.put("motion", new ArrayList<String>());
-										} else {
-											machineDataMap.get("motion").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("motion") == null) {
+//											machineDataMap.put("motion", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("motion").add(conditionType.getValue().getValue());
+//										}
+									}else {
+										machine.setMotion("");
 									}
 									break;
 								}
 								case "system": {
 									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
-									if (conditionTypeName != null ){
+									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setSystem(conditionType.getValue().getValue());
-										if (machineDataMap.get("system") == null) {
-											machineDataMap.put("system", new ArrayList<String>());
-										} else {
-											machineDataMap.get("system").add(conditionType.getValue().getValue());
-										}
+//										if (machineDataMap.get("system") == null) {
+//											machineDataMap.put("system", new ArrayList<String>());
+//										} else {
+//											machineDataMap.get("system").add(conditionType.getValue().getValue());
+//										}
+									}
+									else {
+										machine.setSystem("");
 									}
 									break;
 								}
