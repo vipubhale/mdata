@@ -226,7 +226,7 @@ public class MDataService {
 //						    System.out.println(conditionTypeName);
 							switch (conditionTypeName) {
 								case "servo": {
-									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
+//									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
 									if (conditionTypeName != null &&  conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setServo(conditionType.getDeclaredType().getSimpleName());
 //										if (machineDataMap.get("servo") == null) {
@@ -256,7 +256,7 @@ public class MDataService {
 									break;
 								}
 								case "logic": {
-									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
+//									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
 									if (conditionTypeName != null && conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setLogic(conditionType.getDeclaredType().getSimpleName());
 //										if (machineDataMap.get("logic") == null) {
