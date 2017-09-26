@@ -17,11 +17,13 @@
 		</fileSet>
 		<!-- Copy in the resources including the wrapper exe and config -->
 		<fileSet>
-			<directory>${project.basedir}/bin</directory>
+			<directory>${project.basedir}/winsvc</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-				<include>*.bat</include>
+				<include>*.exe</include>
+				<include>*.xml</include>
 			</includes>
 		</fileSet>
+
 	</fileSets>
 </assembly>
