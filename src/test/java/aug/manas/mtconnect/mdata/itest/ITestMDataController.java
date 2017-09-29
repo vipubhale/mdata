@@ -1,4 +1,4 @@
-package aug.manas.mtconnect.mdata;
+package aug.manas.mtconnect.mdata.itest;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.iterableWithSize;
@@ -17,12 +17,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.jayway.jsonpath.JsonPath;
 
+@ActiveProfiles("dev")
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class ITestMDataController {
