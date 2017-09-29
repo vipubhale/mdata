@@ -7,12 +7,15 @@ import java.util.List;
 
 import javax.xml.bind.JAXBElement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import aug.manas.mtconnect.mdata.MTDataApp;
 import aug.manas.mtconnect.mdata.config.ConfigBean;
 import aug.manas.mtconnect.mdata.exception.AgentNotAvailableException;
 import aug.manas.mtconnect.mdata.model.MachineData;
@@ -27,56 +30,60 @@ import aug.manas.mtconnect.mtdata.stubs.SampleType;
 @Service
 public class MDataService {
 	
+    private static final Logger logger = LoggerFactory.getLogger(MDataService.class);
+
+	
 	private BigInteger nextSequence;
 
 	@Autowired
 	private ConfigBean config;
 
 	public ArrayList<MachineData> callAgent() throws AgentNotAvailableException {
-//		HashMap<String, ArrayList<String>> machineDataMap = new HashMap<String, ArrayList<String>>();
-
+		logger.debug("Entering the callAgent method.");
 		ArrayList<MachineData> alMachineData = new ArrayList<MachineData>();
+		logger.debug("Creating the RestTemplate instance.");
 		RestTemplate restTemplate = new RestTemplate();
 		MTConnectStreamsType mtConnectStream = null;
 		try {
 			if (nextSequence == null){
+				logger.debug("NextSequence is null calling the Agent.");
 				mtConnectStream = restTemplate.getForObject(config.getAgentEndpoint()+"?from{nextsequence}", MTConnectStreamsType.class, nextSequence);
 			}
 			else {
 				mtConnectStream = restTemplate.getForObject(config.getAgentEndpoint(), MTConnectStreamsType.class);
 			}
 		} catch (RestClientException e) {
-			// System.out.println("And Error is " + e.getLocalizedMessage());
-			throw new AgentNotAvailableException();
+			logger.error("Error calling the backend Agent", e);
+			throw new AgentNotAvailableException(e.getMessage());
 		}
 		List<DeviceStreamType> listDeviceStreamType = mtConnectStream.getStreams().getDeviceStream();
-		
+		logger.debug("List of DeviceStreamType is :: ",listDeviceStreamType);
+		logger.debug("Size of DeviceStreamType is :: ",listDeviceStreamType.size());
+
 		nextSequence = mtConnectStream.getHeader().getNextSequence();
+		logger.debug("nextSequence is :: ",nextSequence);
 		
 		for (DeviceStreamType deviceStreamType : listDeviceStreamType) {
 			MachineData machine = new MachineData();
 			
 			if (deviceStreamType != null && deviceStreamType.getName() != null){
 				machine.setMachineName(deviceStreamType.getName());
+			}else {
+				machine.setMachineName("");
 			}
+			logger.debug("MachineName is :: "+ machine.getMachineName());
+			
 			if (deviceStreamType != null && deviceStreamType.getUuid() != null){
 				machine.setMachineId(deviceStreamType.getUuid());
+			}else {
+				machine.setMachineId("");
+
 			}
-//
-//			if (machineDataMap.get("machineName") == null) {
-//				machineDataMap.put("machineName", new ArrayList<String>());
-//			} else {
-//				machineDataMap.get("machineName").add(deviceStreamType.getName());
-//			}
-//
-//			if (machineDataMap.get("machineId") == null) {
-//				machineDataMap.put("machineId", new ArrayList<String>());
-//			} else {
-//				machineDataMap.get("machineId").add(deviceStreamType.getUuid());
-//			}
+			logger.debug("MachineId is :: "+machine.getMachineId());
 
 			List<ComponentStreamType> listComponentStream = deviceStreamType.getComponentStream();
-
+			logger.debug("ListComponentStream is :: ", (listComponentStream == null) ? null: listComponentStream);
+			
 			for (ComponentStreamType componentStream : listComponentStream) {
 				switch (componentStream.getComponent()) {
 				// Path Element
@@ -91,36 +98,27 @@ public class MDataService {
 							if (eventType.getValue().getValue() != null && eventType.getValue().getValue() != "") {
 								String partCount = eventType.getValue().getValue();
 								if (partCount != null){
-									machine.setPartCount(partCount);
+									machine.setPartCount(Integer.parseInt(partCount));
+
 								}
 								else {
-									machine.setPartCount("");
+									machine.setPartCount(0);
 								}
-//								if (machineDataMap.get("partCount") == null) {
-//									machineDataMap.put("partCount", new ArrayList<String>());
-//								} else {
-//									machineDataMap.get("partCount").add(eventType.getValue().getValue());
-//								}
-
+								logger.debug("PartCount is :: "+machine.getPartCount());
 							}
 							break;
 						}
 						case "active_axes": {
 							if (eventType.getValue().getValue() != null && eventType.getValue().getValue() != "") {
 								String activeAxesInPath = eventType.getValue().getValue();
-//								// System.out.println(activeAxesInPath);
 								if (activeAxesInPath != null) {
 									machine.setActiveAxes(activeAxesInPath);
+
 								}
 								else {
 									machine.setActiveAxes("");
 								}
-
-//								if (machineDataMap.get("activeAxes") == null) {
-//									machineDataMap.put("activeAxes", new ArrayList<String>());
-//								} else {
-//									machineDataMap.get("activeAxes").add(eventType.getValue().getValue());
-//								}
+								logger.debug("ActiveAxes is :: "+machine.getActiveAxes());
 							}
 							break;
 						}
@@ -136,51 +134,36 @@ public class MDataService {
 						String rotaryType = sampleType.getValue().getName();
 						switch (rotaryType) {
 							case "S1speed": {
-								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
 								if (sampleType.getValue().getValue() != null ){
 									machine.setS1Speed(sampleType.getValue().getValue());
-//									if (machineDataMap.get("s1Speed") == null) {
-//										machineDataMap.put("s1Speed", new ArrayList<String>());
-//									} else {
-//										machineDataMap.get("s1Speed").add(sampleType.getValue().getValue());
-//									}
 								}
 								else {
 									machine.setS1Speed("");
 								}
+								logger.debug("S1Speed is :: "+machine.getS1Speed());
 								break;
 							}
 							case "S1load": {
-								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
 								if (sampleType.getValue().getValue() != null )
 								{
 									machine.setS1Load(sampleType.getValue().getValue());
-//								if (machineDataMap.get("s1Load") == null) {
-//									machineDataMap.put("s1Load", new ArrayList<String>());
-//								} else {
-//									machineDataMap.get("s1Load").add(sampleType.getValue().getValue());
-//								}
 								}
 								else {
 									machine.setS1Load("");
 								}
+								logger.debug("S1load is :: "+machine.getS1Load());
 								break;
 							}
 							case "SspeedOvr": {
-								// System.out.println(sampleType.getValue().getValue() + " :: " + sampleType.getValue().getName());
 								if (sampleType.getValue().getValue() != null )
 								{
 									machine.setsSpeedOvr(sampleType.getValue().getValue());
-//								if (machineDataMap.get("sSpeedOvr") == null) {
-//									machineDataMap.put("sSpeedOvr", new ArrayList<String>());
-//								} else {
-//									machineDataMap.get("sSpeedOvr").add(sampleType.getValue().getValue());
-//								}
 								}
 								else {
 									machine.setsSpeedOvr("");
 
 								}
+								logger.debug("SspeedOvr is :: "+machine.getsSpeedOvr());
 								break;
 							}
 						}
@@ -189,26 +172,19 @@ public class MDataService {
 					ConditionListType conditionListType = componentStream.getCondition();
 					if (conditionListType != null ){
 						List<JAXBElement<? extends ConditionType>> conditionTypes = conditionListType.getCondition() ;
-						for (JAXBElement<? extends ConditionType> conditionType : conditionTypes){
-//							// System.out.println(conditionType.getName() + " :: "+ conditionType.getValue() );
-							
+						for (JAXBElement<? extends ConditionType> conditionType : conditionTypes){							
 							// rotary type
 							String conditionTypeName = conditionType.getValue().getName();
 							// System.out.println(conditionTypeName);
 							switch (conditionTypeName) {
 								case "S1servo": {
-									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
 									if (conditionTypeName != null && conditionType.getValue() != null && conditionType.getValue().getValue() != null ){
 										machine.setS1Servo(conditionType.getValue().getValue());
-//										if (machineDataMap.get("s1Servo") == null) {
-//											machineDataMap.put("s1Servo", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("s1Servo").add(conditionType.getValue().getValue());
-//										}
 									}
 									else {
 										machine.setS1Servo("");
 									}
+									logger.debug("S1load is :: "+machine.getS1Servo());
 									break;
 								}
 							}
@@ -223,80 +199,54 @@ public class MDataService {
 						List<JAXBElement<? extends ConditionType>> conditionTypes = conditionListType.getCondition() ;
 						for (JAXBElement<? extends ConditionType> conditionType : conditionTypes){
 							String conditionTypeName = conditionType.getValue().getName();
-//						    System.out.println(conditionTypeName);
 							switch (conditionTypeName) {
 								case "servo": {
-//									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
 									if (conditionTypeName != null &&  conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setServo(conditionType.getDeclaredType().getSimpleName());
-//										if (machineDataMap.get("servo") == null) {
-//											machineDataMap.put("servo", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("servo").add(conditionType.getValue().getValue());
-//										}
 									}
 									else {
 										machine.setServo("");
 
 									}
+									logger.debug("servo is :: "+machine.getServo());
 									break;
 								}
 								case "comms": {
-									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
 									if (conditionTypeName != null && conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setComms(conditionType.getDeclaredType().getSimpleName());
-//										if (machineDataMap.get("comms") == null) {
-//											machineDataMap.put("comms", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("comms").add(conditionType.getValue().getValue());
-//										}
 									}else {
 										machine.setComms("");
 									}
+									logger.debug("comms is :: "+machine.getComms());
 									break;
 								}
 								case "logic": {
-//									 System.out.println(conditionTypeName + " :: " + conditionType.getDeclaredType().getSimpleName());
 									if (conditionTypeName != null && conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setLogic(conditionType.getDeclaredType().getSimpleName());
-//										if (machineDataMap.get("logic") == null) {
-//											machineDataMap.put("logic", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("logic").add(conditionType.getValue().getValue());
-//										}
 									}
 									else {
 										machine.setLogic("");
 									}
+									logger.debug("logic is :: "+machine.getLogic());
 									break;
 								}
 								case "motion": {
-									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
 									if (conditionTypeName != null && conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setMotion(conditionType.getDeclaredType().getSimpleName());
-//										if (machineDataMap.get("motion") == null) {
-//											machineDataMap.put("motion", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("motion").add(conditionType.getValue().getValue());
-//										}
 									}else {
 										machine.setMotion("");
 									}
+									logger.debug("motion is :: "+machine.getMotion());
 									break;
 								}
 								case "system": {
-									// System.out.println(conditionTypeName + " :: " + conditionType.getValue().getValue());
 									if (conditionTypeName != null && conditionType.getDeclaredType() != null && conditionType.getDeclaredType().getSimpleName() != null ){
 										machine.setSystem(conditionType.getDeclaredType().getSimpleName());
-//										if (machineDataMap.get("system") == null) {
-//											machineDataMap.put("system", new ArrayList<String>());
-//										} else {
-//											machineDataMap.get("system").add(conditionType.getValue().getValue());
-//										}
 									}
 									else {
 										machine.setSystem("");
 									}
+									logger.debug("system is :: "+machine.getSystem());
 									break;
 								}
 							}
@@ -307,8 +257,10 @@ public class MDataService {
 
 				}
 			}
+			logger.debug("MachineData for current machine "+ (alMachineData.size()+1) +" is ::"+machine);
 			alMachineData.add(machine);
 		}
+		logger.debug("List of MachineData is ::"+alMachineData);			
 		return alMachineData;
 
 	}
