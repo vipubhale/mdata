@@ -10,15 +10,29 @@
 	<fileSets>
 		<fileSet>
 			<directory>${project.build.directory}</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>/windows</outputDirectory>
 			<includes>
 				<include>*.jar</include>
+			</includes>
+		</fileSet>
+				<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>/unix</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+		</fileSet>
+				<fileSet>
+			<directory>${project.basedir}/bin/</directory>
+			<outputDirectory>/unix/bin</outputDirectory>
+			<includes>
+				<include>run.sh</include>
 			</includes>
 		</fileSet>
 		<!-- Copy in the resources including the wrapper exe and config -->
 		<fileSet>
 			<directory>${project.basedir}/winsvc</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory>/windows</outputDirectory>
 			<includes>
 				<include>*.exe</include>
 				<include>*.xml</include>
