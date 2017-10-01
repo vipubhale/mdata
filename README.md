@@ -2,10 +2,15 @@
 
 This application is a dashboard for MTConnect® stream Agent that connects with MTConnect® Adapter for Fanuc CNC machines. 
 
+This acts as dashboard and invokes the endpoint of MTConnect® stream Agent to get the current state from all adapaters registered with it. In turn those adapaters poll the information from the CNC. 
+Currently this application supports the data from CNC controls specific to Fanuc having Fanuc Focas 0id enabled*.
+ 
+ Fanuc(0iTF essentially 0id) CNC machines(compatible with any version 30i) are currently compatible with this application. 
+
 ![MdataDashboard](dashboard.png)
 
- Features
-- servers number of machines served by agent.
+### Features
+- Serves number of machines served by agent.
 - Dashboard shows few attributes such as name , id , partcount etc.
 - Easy to use and maintain.
 
@@ -64,5 +69,12 @@ If you want to evaluate this application. You can do the testing with SOAP UI as
 	* Righclick on mock service mdata-mock-service and select 'start minimized'
 	* Ensure in browswer http://localhost:5020/current gives an xml
 * Run the application as per the Install section mentiond above.
+
+### Enhancement for future
+* Support for multiple attributes rather than supported ones right now for Fanuc Facas.
+* UI enhancement for search capabilities.
+* Including database to persist the data for analytics purpose.
+
+Any feedback on this is appreciated. Also please report the bug in issues section here. 
 
 Happy information driven manufacturing :+1:
