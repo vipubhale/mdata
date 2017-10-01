@@ -1,0 +1,842 @@
+<MTConnectStreams xmlns:m="urn:mtconnect.org:MTConnectStreams:1.3"
+	xmlns="urn:mtconnect.org:MTConnectStreams:1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:mtconnect.org:MTConnectStreams:1.3 /schemas/MTConnectStreams_1.3.xsd">
+	<Header creationTime="2017-07-29T03:54:39Z" sender="xyz-PC"
+		instanceId="1501300423" version="1.3.0.4" bufferSize="131072"
+		nextSequence="4939" firstSequence="1" lastSequence="4938" />
+	<Streams>
+		<DeviceStream name="CNC-2-AXIS-1" uuid="device_with_fanuc_1">
+			<ComponentStream component="Device" name="CNC-2-AXIS-1"
+				componentId="Device_01">
+				<Events>
+					<AssetChanged dataItemId="Device_01_asset_chg"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="1" assetType="">UNAVAILABLE
+					</AssetChanged>
+					<AssetRemoved dataItemId="Device_01_asset_rem"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="2" assetType="">UNAVAILABLE
+					</AssetRemoved>
+					<Availability dataItemId="avail_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="avail" sequence="274">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="A"
+				componentId="a1_01">
+				<Samples>
+					<Angle dataItemId="a11_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aact" sequence="3" subType="ACTUAL">UNAVAILABLE</Angle>
+					<Load dataItemId="a12_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aload" sequence="4" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="a16_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="8">INDEX</RotaryMode>
+				</Events>
+				<Condition>
+					<Unavailable dataItemId="a13_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Atravel" sequence="5" type="POSITION" />
+					<Unavailable dataItemId="a14_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aoverheat" sequence="6" type="TEMPERATURE" />
+					<Unavailable dataItemId="a15_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aservo" sequence="7" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="C"
+				componentId="c1_01">
+				<Samples>
+					<RotaryVelocity dataItemId="c11_01"
+						timestamp="2017-07-29T03:54:21.941Z" name="S1speed" sequence="3714"
+						subType="ACTUAL">0</RotaryVelocity>
+					<Load dataItemId="c12_01" timestamp="2017-07-29T03:54:21.941Z"
+						name="S1load" sequence="3715" subType="ACTUAL">0</Load>
+					<RotaryVelocity dataItemId="c15_01"
+						timestamp="2017-07-29T03:53:44.241Z" name="SspeedOvr" sequence="381"
+						subType="OVERRIDE">100</RotaryVelocity>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="c14_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="12">SPINDLE</RotaryMode>
+				</Events>
+				<Condition>
+					<Normal dataItemId="c16_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="S1servo" sequence="287" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Controller" name="Controller"
+				componentId="controller1_01">
+				<Events>
+					<EmergencyStop dataItemId="controller11_01"
+						timestamp="2017-07-29T03:53:44.241Z" name="estop" sequence="393">ARMED
+					</EmergencyStop>
+					<Message dataItemId="controller12_01" timestamp="2017-07-29T03:54:22.274Z"
+						name="message" sequence="3742"> CHUCK NOT CLAMPED, SPINDLE INHIBIT
+					</Message>
+				</Events>
+				<Condition>
+					<Normal dataItemId="controller13_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="servo" sequence="276" type="HARDWARE" />
+					<Normal dataItemId="controller14_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="comms" sequence="277" type="COMMUNICATIONS" />
+					<Normal dataItemId="controller15_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="logic" sequence="278" type="LOGIC_PROGRAM" />
+					<Normal dataItemId="controller16_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="motion" sequence="279" type="MOTION_PROGRAM" />
+					<Normal dataItemId="controller17_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="system" sequence="280" type="SYSTEM" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Path" name="path"
+				componentId="path1_01">
+				<Samples>
+					<PathPosition dataItemId="path110_01" timestamp="2017-07-29T03:54:19.500Z"
+						name="path_position" sequence="3467" subType="ACTUAL">0.0000000000
+						0.0000000000 -50.0000000000</PathPosition>
+					<PathFeedrate dataItemId="path111_01" timestamp="2017-07-29T03:54:19.500Z"
+						name="path_feedrate" sequence="3466" subType="ACTUAL">0</PathFeedrate>
+					<PathFeedrate dataItemId="path112_01" timestamp="2017-07-29T03:54:19.873Z"
+						name="f_command" sequence="3504" subType="COMMANDED">0</PathFeedrate>
+					<PathFeedrate dataItemId="path113_01" timestamp="2017-07-29T03:53:44.241Z"
+						name="Fovr" sequence="382" subType="OVERRIDE">100</PathFeedrate>
+				</Samples>
+				<Events>
+					<ActiveAxes dataItemId="path101_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="active_axes" sequence="275">X Z</ActiveAxes>
+					<ToolId dataItemId="path102_01" timestamp="2017-07-29T03:54:18.831Z"
+						name="tool_id" sequence="3385">0</ToolId>
+					<Line dataItemId="path103_01" timestamp="2017-07-29T03:54:19.873Z"
+						name="line" sequence="3501">0</Line>
+					<Execution dataItemId="path104_01" timestamp="2017-07-29T03:54:19.873Z"
+						name="execution" sequence="3503">STOPPED</Execution>
+					<ControllerMode dataItemId="path105_01"
+						timestamp="2017-07-29T03:53:44.241Z" name="mode" sequence="390">AUTOMATIC
+					</ControllerMode>
+					<Program dataItemId="path106_01" timestamp="2017-07-29T03:53:44.241Z"
+						name="program" sequence="384">752.752</Program>
+					<ProgramComment dataItemId="path107_01"
+						timestamp="2017-07-29T03:53:44.241Z" name="program_comment"
+						sequence="385">% O0752(SPRAG CLUTCH GEAR II ND SIDE)</ProgramComment>
+					<Block dataItemId="path108_01" timestamp="2017-07-29T03:54:19.873Z"
+						name="block" sequence="3502">O0752(SPRAG CLUTCH GEAR II ND SIDE)</Block>
+					<PartCount dataItemId="path109_01" timestamp="2017-07-29T03:54:19.500Z"
+						name="part_count" sequence="3465">51</PartCount>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="X"
+				componentId="x1_01">
+				<Samples>
+					<Position dataItemId="x11_01" timestamp="2017-07-29T03:54:19.500Z"
+						name="Xact" sequence="3468" subType="ACTUAL">0</Position>
+					<Load dataItemId="x12_01" timestamp="2017-07-29T03:54:39.326Z"
+						name="Xload" sequence="4885" subType="ACTUAL">31</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="x13_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xtravel" sequence="281" type="POSITION" />
+					<Normal dataItemId="x14_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xoverheat" sequence="282" type="TEMPERATURE" />
+					<Normal dataItemId="x15_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xservo" sequence="283" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Y"
+				componentId="y1_01">
+				<Samples>
+					<Position dataItemId="y11_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yact" sequence="40" subType="ACTUAL">UNAVAILABLE</Position>
+					<Load dataItemId="y12_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yload" sequence="41" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Condition>
+					<Unavailable dataItemId="y13_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Ytravel" sequence="42" type="POSITION" />
+					<Unavailable dataItemId="y14_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yoverheat" sequence="43" type="TEMPERATURE" />
+					<Unavailable dataItemId="y15_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yservo" sequence="44" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Z"
+				componentId="z1_01">
+				<Samples>
+					<Position dataItemId="z11_01" timestamp="2017-07-29T03:54:19.500Z"
+						name="Zact" sequence="3470" subType="ACTUAL">-57.627</Position>
+					<Load dataItemId="z12_01" timestamp="2017-07-29T03:54:39.654Z"
+						name="Zload" sequence="4917" subType="ACTUAL">4</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="z13_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Ztravel" sequence="284" type="POSITION" />
+					<Normal dataItemId="z14_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zoverheat" sequence="285" type="TEMPERATURE" />
+					<Normal dataItemId="z15_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zservo" sequence="286" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+		</DeviceStream>
+		<DeviceStream name="CNC-2-AXIS-2" uuid="device_with_fanuc_2">
+			<ComponentStream component="Device" name="CNC-2-AXIS-2"
+				componentId="Device_02">
+				<Events>
+					<AssetChanged dataItemId="Device_02_asset_chg"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="50" assetType="">UNAVAILABLE
+					</AssetChanged>
+					<AssetRemoved dataItemId="Device_02_asset_rem"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="51" assetType="">UNAVAILABLE
+					</AssetRemoved>
+					<Availability dataItemId="avai2_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="avail" sequence="246">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="A"
+				componentId="a2_01">
+				<Samples>
+					<Angle dataItemId="a21_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aact" sequence="52" subType="ACTUAL">UNAVAILABLE</Angle>
+					<Load dataItemId="a22_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aload" sequence="53" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="a26_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="57">INDEX</RotaryMode>
+				</Events>
+				<Condition>
+					<Unavailable dataItemId="a23_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Atravel" sequence="54" type="POSITION" />
+					<Unavailable dataItemId="a24_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aoverheat" sequence="55" type="TEMPERATURE" />
+					<Unavailable dataItemId="a25_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aservo" sequence="56" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="C"
+				componentId="c2_01">
+				<Samples>
+					<RotaryVelocity dataItemId="c21_01"
+						timestamp="2017-07-29T03:54:39.734Z" name="S1speed" sequence="4929"
+						subType="ACTUAL">2570</RotaryVelocity>
+					<Load dataItemId="c22_01" timestamp="2017-07-29T03:54:35.482Z"
+						name="S1load" sequence="4611" subType="ACTUAL">19</Load>
+					<RotaryVelocity dataItemId="c25_01"
+						timestamp="2017-07-29T03:53:44.232Z" name="SspeedOvr" sequence="360"
+						subType="OVERRIDE">100</RotaryVelocity>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="c24_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="61">SPINDLE</RotaryMode>
+				</Events>
+				<Condition>
+					<Normal dataItemId="c26_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="S1servo" sequence="259" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Controller" name="Controller"
+				componentId="controller2_01">
+				<Events>
+					<EmergencyStop dataItemId="controller21_01"
+						timestamp="2017-07-29T03:53:44.232Z" name="estop" sequence="372">ARMED
+					</EmergencyStop>
+					<Message dataItemId="controller22_01" timestamp="2017-07-29T03:54:26.905Z"
+						name="message" sequence="3985"> CHUCK CLAMPED ON O. D.</Message>
+				</Events>
+				<Condition>
+					<Normal dataItemId="controller23_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="servo" sequence="248" type="HARDWARE" />
+					<Normal dataItemId="controller24_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="comms" sequence="249" type="COMMUNICATIONS" />
+					<Normal dataItemId="controller25_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="logic" sequence="250" type="LOGIC_PROGRAM" />
+					<Normal dataItemId="controller26_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="motion" sequence="251" type="MOTION_PROGRAM" />
+					<Normal dataItemId="controller27_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="system" sequence="252" type="SYSTEM" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Path" name="path"
+				componentId="path2_01">
+				<Samples>
+					<PathPosition dataItemId="path210_01" timestamp="2017-07-29T03:54:39.734Z"
+						name="path_position" sequence="4926" subType="ACTUAL">13.8170000000
+						0.0000000000 1.5000000000</PathPosition>
+					<PathFeedrate dataItemId="path211_01" timestamp="2017-07-29T03:54:38.802Z"
+						name="path_feedrate" sequence="4843" subType="ACTUAL">309</PathFeedrate>
+					<PathFeedrate dataItemId="path212_01" timestamp="2017-07-29T03:54:38.475Z"
+						name="f_command" sequence="4821" subType="COMMANDED">12</PathFeedrate>
+					<PathFeedrate dataItemId="path213_01" timestamp="2017-07-29T03:53:44.232Z"
+						name="Fovr" sequence="361" subType="OVERRIDE">100</PathFeedrate>
+				</Samples>
+				<Events>
+					<ActiveAxes dataItemId="path201_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="active_axes" sequence="247">X Z</ActiveAxes>
+					<ToolId dataItemId="path202_01" timestamp="2017-07-29T03:54:31.069Z"
+						name="tool_id" sequence="4243">801</ToolId>
+					<Line dataItemId="path203_01" timestamp="2017-07-29T03:54:31.069Z"
+						name="line" sequence="4244">1</Line>
+					<Execution dataItemId="path204_01" timestamp="2017-07-29T03:54:31.069Z"
+						name="execution" sequence="4246">ACTIVE</Execution>
+					<ControllerMode dataItemId="path205_01"
+						timestamp="2017-07-29T03:53:44.232Z" name="mode" sequence="369">AUTOMATIC
+					</ControllerMode>
+					<Program dataItemId="path206_01" timestamp="2017-07-29T03:53:44.232Z"
+						name="program" sequence="363">844.844</Program>
+					<ProgramComment dataItemId="path207_01"
+						timestamp="2017-07-29T03:53:44.232Z" name="program_comment"
+						sequence="364">% O0844(CONTROL,PINION,1ST)(PART,NO,4339060844)
+					</ProgramComment>
+					<Block dataItemId="path208_01" timestamp="2017-07-29T03:54:38.802Z"
+						name="block" sequence="4842">G01 X0.000 F0.12</Block>
+					<PartCount dataItemId="path209_01" timestamp="2017-07-29T03:54:21.979Z"
+						name="part_count" sequence="3716">87</PartCount>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="X"
+				componentId="x2_01">
+				<Samples>
+					<Position dataItemId="x21_01" timestamp="2017-07-29T03:54:39.734Z"
+						name="Xact" sequence="4927" subType="ACTUAL">-289.315</Position>
+					<Load dataItemId="x22_01" timestamp="2017-07-29T03:54:39.426Z"
+						name="Xload" sequence="4904" subType="ACTUAL">0</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="x23_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Xtravel" sequence="253" type="POSITION" />
+					<Normal dataItemId="x24_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Xoverheat" sequence="254" type="TEMPERATURE" />
+					<Normal dataItemId="x25_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Xservo" sequence="255" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Y"
+				componentId="y2_01">
+				<Samples>
+					<Position dataItemId="y21_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yact" sequence="89" subType="ACTUAL">UNAVAILABLE</Position>
+					<Load dataItemId="y22_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yload" sequence="90" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Condition>
+					<Unavailable dataItemId="y23_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Ytravel" sequence="91" type="POSITION" />
+					<Unavailable dataItemId="y24_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yoverheat" sequence="92" type="TEMPERATURE" />
+					<Unavailable dataItemId="y25_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yservo" sequence="93" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Z"
+				componentId="z2_01">
+				<Samples>
+					<Position dataItemId="z21_01" timestamp="2017-07-29T03:54:38.475Z"
+						name="Zact" sequence="4823" subType="ACTUAL">-345.395</Position>
+					<Load dataItemId="z22_01" timestamp="2017-07-29T03:54:39.734Z"
+						name="Zload" sequence="4928" subType="ACTUAL">4</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="z23_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Ztravel" sequence="256" type="POSITION" />
+					<Normal dataItemId="z24_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Zoverheat" sequence="257" type="TEMPERATURE" />
+					<Normal dataItemId="z25_01" timestamp="2017-07-29T03:53:43.958Z"
+						name="Zservo" sequence="258" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+		</DeviceStream>
+		<DeviceStream name="CNC-2-AXIS-3" uuid="device_with_fanuc_3">
+			<ComponentStream component="Device" name="CNC-2-AXIS-3"
+				componentId="Device_03">
+				<Events>
+					<AssetChanged dataItemId="Device_03_asset_chg"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="99" assetType="">UNAVAILABLE
+					</AssetChanged>
+					<AssetRemoved dataItemId="Device_03_asset_rem"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="100" assetType="">UNAVAILABLE
+					</AssetRemoved>
+					<Availability dataItemId="avai3_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="avail" sequence="288">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="A"
+				componentId="a3_01">
+				<Samples>
+					<Angle dataItemId="a31_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aact" sequence="101" subType="ACTUAL">UNAVAILABLE</Angle>
+					<Load dataItemId="a32_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aload" sequence="102" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="a36_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="106">INDEX</RotaryMode>
+				</Events>
+				<Condition>
+					<Unavailable dataItemId="a33_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Atravel" sequence="103" type="POSITION" />
+					<Unavailable dataItemId="a34_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aoverheat" sequence="104" type="TEMPERATURE" />
+					<Unavailable dataItemId="a35_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aservo" sequence="105" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="C"
+				componentId="c3_01">
+				<Samples>
+					<RotaryVelocity dataItemId="c31_01"
+						timestamp="2017-07-29T03:54:39.717Z" name="S1speed" sequence="4937"
+						subType="ACTUAL">2895</RotaryVelocity>
+					<Load dataItemId="c32_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="S1load" sequence="4938" subType="ACTUAL">26</Load>
+					<RotaryVelocity dataItemId="c35_01"
+						timestamp="2017-07-29T03:53:44.242Z" name="SspeedOvr" sequence="318"
+						subType="OVERRIDE">110</RotaryVelocity>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="c34_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="110">SPINDLE</RotaryMode>
+				</Events>
+				<Condition>
+					<Normal dataItemId="c36_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="S1servo" sequence="301" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Controller" name="Controller"
+				componentId="controller3_01">
+				<Events>
+					<EmergencyStop dataItemId="controller31_01"
+						timestamp="2017-07-29T03:53:44.242Z" name="estop" sequence="330">ARMED
+					</EmergencyStop>
+					<Message dataItemId="controller32_01" timestamp="2017-07-29T03:54:27.828Z"
+						name="message" sequence="4040"> CHUCK CLAMPED ON O. D.</Message>
+				</Events>
+				<Condition>
+					<Normal dataItemId="controller33_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="servo" sequence="290" type="HARDWARE" />
+					<Normal dataItemId="controller34_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="comms" sequence="291" type="COMMUNICATIONS" />
+					<Normal dataItemId="controller35_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="logic" sequence="292" type="LOGIC_PROGRAM" />
+					<Normal dataItemId="controller36_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="motion" sequence="293" type="MOTION_PROGRAM" />
+					<Normal dataItemId="controller37_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="system" sequence="294" type="SYSTEM" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Path" name="path"
+				componentId="path3_01">
+				<Samples>
+					<PathPosition dataItemId="path310_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="path_position" sequence="4932" subType="ACTUAL">14.7000000000
+						0.0000000000 -46.9750000000</PathPosition>
+					<PathFeedrate dataItemId="path311_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="path_feedrate" sequence="4931" subType="ACTUAL">812</PathFeedrate>
+					<PathFeedrate dataItemId="path312_01" timestamp="2017-07-29T03:54:39.385Z"
+						name="f_command" sequence="4895" subType="COMMANDED">28</PathFeedrate>
+					<PathFeedrate dataItemId="path313_01" timestamp="2017-07-29T03:53:44.242Z"
+						name="Fovr" sequence="319" subType="OVERRIDE">100</PathFeedrate>
+				</Samples>
+				<Events>
+					<ActiveAxes dataItemId="path301_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="active_axes" sequence="289">X Z</ActiveAxes>
+					<ToolId dataItemId="path302_01" timestamp="2017-07-29T03:54:28.116Z"
+						name="tool_id" sequence="4064">103</ToolId>
+					<Line dataItemId="path303_01" timestamp="2017-07-29T03:54:28.116Z"
+						name="line" sequence="4065">1</Line>
+					<Execution dataItemId="path304_01" timestamp="2017-07-29T03:54:27.564Z"
+						name="execution" sequence="4020">ACTIVE</Execution>
+					<ControllerMode dataItemId="path305_01"
+						timestamp="2017-07-29T03:53:44.242Z" name="mode" sequence="327">AUTOMATIC
+					</ControllerMode>
+					<Program dataItemId="path306_01" timestamp="2017-07-29T03:53:44.242Z"
+						name="program" sequence="321">2913.2913</Program>
+					<ProgramComment dataItemId="path307_01"
+						timestamp="2017-07-29T03:53:44.242Z" name="program_comment"
+						sequence="322">% O2913(ROYAL,ENFIELD,2ND)</ProgramComment>
+					<Block dataItemId="path308_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="block" sequence="4930">G01 Z-101.000 F0.28</Block>
+					<PartCount dataItemId="path309_01" timestamp="2017-07-29T03:54:23.142Z"
+						name="part_count" sequence="3803">162</PartCount>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="X"
+				componentId="x3_01">
+				<Samples>
+					<Position dataItemId="x31_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="Xact" sequence="4933" subType="ACTUAL">-264.535</Position>
+					<Load dataItemId="x32_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="Xload" sequence="4934" subType="ACTUAL">31</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="x33_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xtravel" sequence="295" type="POSITION" />
+					<Normal dataItemId="x34_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xoverheat" sequence="296" type="TEMPERATURE" />
+					<Normal dataItemId="x35_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xservo" sequence="297" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Y"
+				componentId="y3_01">
+				<Samples>
+					<Position dataItemId="y31_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yact" sequence="138" subType="ACTUAL">UNAVAILABLE</Position>
+					<Load dataItemId="y32_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yload" sequence="139" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Condition>
+					<Unavailable dataItemId="y33_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Ytravel" sequence="140" type="POSITION" />
+					<Unavailable dataItemId="y34_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yoverheat" sequence="141" type="TEMPERATURE" />
+					<Unavailable dataItemId="y35_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yservo" sequence="142" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Z"
+				componentId="z3_01">
+				<Samples>
+					<Position dataItemId="z31_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="Zact" sequence="4935" subType="ACTUAL">-266.411</Position>
+					<Load dataItemId="z32_01" timestamp="2017-07-29T03:54:39.717Z"
+						name="Zload" sequence="4936" subType="ACTUAL">14</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="z33_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Ztravel" sequence="298" type="POSITION" />
+					<Normal dataItemId="z34_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zoverheat" sequence="299" type="TEMPERATURE" />
+					<Normal dataItemId="z35_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zservo" sequence="300" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+		</DeviceStream>
+		<DeviceStream name="CNC-2-AXIS-4" uuid="device_with_fanuc_4">
+			<ComponentStream component="Device" name="CNC-2-AXIS-4"
+				componentId="Device_04">
+				<Events>
+					<AssetChanged dataItemId="Device_04_asset_chg"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="148" assetType="">UNAVAILABLE
+					</AssetChanged>
+					<AssetRemoved dataItemId="Device_04_asset_rem"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="149" assetType="">UNAVAILABLE
+					</AssetRemoved>
+					<Availability dataItemId="avai4_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="avail" sequence="302">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="A"
+				componentId="a4_01">
+				<Samples>
+					<Angle dataItemId="a41_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aact" sequence="150" subType="ACTUAL">UNAVAILABLE</Angle>
+					<Load dataItemId="a42_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aload" sequence="151" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="a46_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="155">INDEX</RotaryMode>
+				</Events>
+				<Condition>
+					<Unavailable dataItemId="a43_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Atravel" sequence="152" type="POSITION" />
+					<Unavailable dataItemId="a44_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aoverheat" sequence="153" type="TEMPERATURE" />
+					<Unavailable dataItemId="a45_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aservo" sequence="154" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="C"
+				componentId="c4_01">
+				<Samples>
+					<RotaryVelocity dataItemId="c41_01"
+						timestamp="2017-07-29T03:54:39.709Z" name="S1speed" sequence="4924"
+						subType="ACTUAL">760</RotaryVelocity>
+					<Load dataItemId="c42_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="S1load" sequence="4925" subType="ACTUAL">148</Load>
+					<RotaryVelocity dataItemId="c45_01"
+						timestamp="2017-07-29T03:53:44.250Z" name="SspeedOvr" sequence="402"
+						subType="OVERRIDE">120</RotaryVelocity>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="c44_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="159">SPINDLE</RotaryMode>
+				</Events>
+				<Condition>
+					<Normal dataItemId="c46_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="S1servo" sequence="315" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Controller" name="Controller"
+				componentId="controller4_01">
+				<Events>
+					<EmergencyStop dataItemId="controller41_01"
+						timestamp="2017-07-29T03:53:44.250Z" name="estop" sequence="414">ARMED
+					</EmergencyStop>
+					<Message dataItemId="controller42_01" timestamp="2017-07-29T03:54:14.834Z"
+						name="message" sequence="3082"> CHUCK CLAMPED ON O. D.</Message>
+				</Events>
+				<Condition>
+					<Normal dataItemId="controller43_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="servo" sequence="304" type="HARDWARE" />
+					<Normal dataItemId="controller44_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="comms" sequence="305" type="COMMUNICATIONS" />
+					<Normal dataItemId="controller45_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="logic" sequence="306" type="LOGIC_PROGRAM" />
+					<Normal dataItemId="controller46_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="motion" sequence="307" type="MOTION_PROGRAM" />
+					<Normal dataItemId="controller47_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="system" sequence="308" type="SYSTEM" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Path" name="path"
+				componentId="path4_01">
+				<Samples>
+					<PathPosition dataItemId="path410_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="path_position" sequence="4920" subType="ACTUAL">-303.5750000000
+						0.0000000000 -214.8370000000</PathPosition>
+					<PathFeedrate dataItemId="path411_01" timestamp="2017-07-29T03:54:39.128Z"
+						name="path_feedrate" sequence="4872" subType="ACTUAL">0</PathFeedrate>
+					<PathFeedrate dataItemId="path412_01" timestamp="2017-07-29T03:54:36.657Z"
+						name="f_command" sequence="4701" subType="COMMANDED">1</PathFeedrate>
+					<PathFeedrate dataItemId="path413_01" timestamp="2017-07-29T03:53:44.250Z"
+						name="Fovr" sequence="403" subType="OVERRIDE">100</PathFeedrate>
+				</Samples>
+				<Events>
+					<ActiveAxes dataItemId="path401_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="active_axes" sequence="303">X Z</ActiveAxes>
+					<ToolId dataItemId="path402_01" timestamp="2017-07-29T03:54:39.128Z"
+						name="tool_id" sequence="4870">0</ToolId>
+					<Line dataItemId="path403_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="line" sequence="4918">4</Line>
+					<Execution dataItemId="path404_01" timestamp="2017-07-29T03:54:15.922Z"
+						name="execution" sequence="3190">ACTIVE</Execution>
+					<ControllerMode dataItemId="path405_01"
+						timestamp="2017-07-29T03:53:44.250Z" name="mode" sequence="411">AUTOMATIC
+					</ControllerMode>
+					<Program dataItemId="path406_01" timestamp="2017-07-29T03:53:44.250Z"
+						name="program" sequence="405">2915.2915</Program>
+					<ProgramComment dataItemId="path407_01"
+						timestamp="2017-07-29T03:53:44.250Z" name="program_comment"
+						sequence="406">% O2915(ROYAL,ENFIELD,1ST)</ProgramComment>
+					<Block dataItemId="path408_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="block" sequence="4919">N4 T0 M5</Block>
+					<PartCount dataItemId="path409_01" timestamp="2017-07-29T03:54:10.267Z"
+						name="part_count" sequence="2670">150</PartCount>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="X"
+				componentId="x4_01">
+				<Samples>
+					<Position dataItemId="x41_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="Xact" sequence="4921" subType="ACTUAL">-303.575</Position>
+					<Load dataItemId="x42_01" timestamp="2017-07-29T03:54:37.317Z"
+						name="Xload" sequence="4743" subType="ACTUAL">16</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="x43_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Xtravel" sequence="309" type="POSITION" />
+					<Normal dataItemId="x44_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Xoverheat" sequence="310" type="TEMPERATURE" />
+					<Normal dataItemId="x45_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Xservo" sequence="311" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Y"
+				componentId="y4_01">
+				<Samples>
+					<Position dataItemId="y41_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yact" sequence="187" subType="ACTUAL">UNAVAILABLE</Position>
+					<Load dataItemId="y42_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yload" sequence="188" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Condition>
+					<Unavailable dataItemId="y43_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Ytravel" sequence="189" type="POSITION" />
+					<Unavailable dataItemId="y44_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yoverheat" sequence="190" type="TEMPERATURE" />
+					<Unavailable dataItemId="y45_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yservo" sequence="191" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Z"
+				componentId="z4_01">
+				<Samples>
+					<Position dataItemId="z41_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="Zact" sequence="4922" subType="ACTUAL">-218.017</Position>
+					<Load dataItemId="z42_01" timestamp="2017-07-29T03:54:39.709Z"
+						name="Zload" sequence="4923" subType="ACTUAL">3</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="z43_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Ztravel" sequence="312" type="POSITION" />
+					<Normal dataItemId="z44_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Zoverheat" sequence="313" type="TEMPERATURE" />
+					<Normal dataItemId="z45_01" timestamp="2017-07-29T03:53:43.965Z"
+						name="Zservo" sequence="314" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+		</DeviceStream>
+		<DeviceStream name="CNC-2-AXIS-5" uuid="device_with_fanuc_5">
+			<ComponentStream component="Device" name="CNC-2-AXIS-5"
+				componentId="Device_05">
+				<Events>
+					<AssetChanged dataItemId="Device_05_asset_chg"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="197" assetType="">UNAVAILABLE
+					</AssetChanged>
+					<AssetRemoved dataItemId="Device_05_asset_rem"
+						timestamp="2017-07-29T03:53:43.853933Z" sequence="198" assetType="">UNAVAILABLE
+					</AssetRemoved>
+					<Availability dataItemId="avai5_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="avail" sequence="260">AVAILABLE</Availability>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="A"
+				componentId="a5_01">
+				<Samples>
+					<Angle dataItemId="a51_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aact" sequence="199" subType="ACTUAL">UNAVAILABLE</Angle>
+					<Load dataItemId="a52_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aload" sequence="200" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="a56_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="204">INDEX</RotaryMode>
+				</Events>
+				<Condition>
+					<Unavailable dataItemId="a53_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Atravel" sequence="201" type="POSITION" />
+					<Unavailable dataItemId="a54_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aoverheat" sequence="202" type="TEMPERATURE" />
+					<Unavailable dataItemId="a55_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Aservo" sequence="203" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Rotary" name="C"
+				componentId="c5_01">
+				<Samples>
+					<RotaryVelocity dataItemId="c51_01"
+						timestamp="2017-07-29T03:54:39.538Z" name="S1speed" sequence="4915"
+						subType="ACTUAL">1439</RotaryVelocity>
+					<Load dataItemId="c52_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="S1load" sequence="4916" subType="ACTUAL">12</Load>
+					<RotaryVelocity dataItemId="c55_01"
+						timestamp="2017-07-29T03:53:44.238Z" name="SspeedOvr" sequence="339"
+						subType="OVERRIDE">100</RotaryVelocity>
+				</Samples>
+				<Events>
+					<RotaryMode dataItemId="c54_01" timestamp="2017-07-29T03:53:43.853933Z"
+						sequence="208">SPINDLE</RotaryMode>
+				</Events>
+				<Condition>
+					<Normal dataItemId="c56_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="S1servo" sequence="273" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Controller" name="Controller"
+				componentId="controller5_01">
+				<Events>
+					<EmergencyStop dataItemId="controller51_01"
+						timestamp="2017-07-29T03:53:44.238Z" name="estop" sequence="351">ARMED
+					</EmergencyStop>
+					<Message dataItemId="controller52_01" timestamp="2017-07-29T03:53:44.238Z"
+						name="message" sequence="337"> CHUCK CLAMPED ON O. D.</Message>
+				</Events>
+				<Condition>
+					<Normal dataItemId="controller53_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="servo" sequence="262" type="HARDWARE" />
+					<Normal dataItemId="controller54_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="comms" sequence="263" type="COMMUNICATIONS" />
+					<Normal dataItemId="controller55_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="logic" sequence="264" type="LOGIC_PROGRAM" />
+					<Normal dataItemId="controller56_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="motion" sequence="265" type="MOTION_PROGRAM" />
+					<Normal dataItemId="controller57_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="system" sequence="266" type="SYSTEM" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Path" name="path"
+				componentId="path5_01">
+				<Samples>
+					<PathPosition dataItemId="path510_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="path_position" sequence="4910" subType="ACTUAL">62.5500000000
+						0.0000000000 10.0000000000</PathPosition>
+					<PathFeedrate dataItemId="path511_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="path_feedrate" sequence="4909" subType="ACTUAL">19286</PathFeedrate>
+					<PathFeedrate dataItemId="path512_01" timestamp="2017-07-29T03:54:37.025Z"
+						name="f_command" sequence="4729" subType="COMMANDED">22</PathFeedrate>
+					<PathFeedrate dataItemId="path513_01" timestamp="2017-07-29T03:53:44.238Z"
+						name="Fovr" sequence="340" subType="OVERRIDE">100</PathFeedrate>
+				</Samples>
+				<Events>
+					<ActiveAxes dataItemId="path501_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="active_axes" sequence="261">X Z</ActiveAxes>
+					<ToolId dataItemId="path502_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="tool_id" sequence="4907">0</ToolId>
+					<Line dataItemId="path503_01" timestamp="2017-07-29T03:54:15.888Z"
+						name="line" sequence="3161">5</Line>
+					<Execution dataItemId="path504_01" timestamp="2017-07-29T03:53:44.238Z"
+						name="execution" sequence="349">ACTIVE</Execution>
+					<ControllerMode dataItemId="path505_01"
+						timestamp="2017-07-29T03:53:44.238Z" name="mode" sequence="348">AUTOMATIC
+					</ControllerMode>
+					<Program dataItemId="path506_01" timestamp="2017-07-29T03:53:44.238Z"
+						name="program" sequence="342">751.751</Program>
+					<ProgramComment dataItemId="path507_01"
+						timestamp="2017-07-29T03:53:44.238Z" name="program_comment"
+						sequence="343">% O0751(SPRAG.CLUTCH.GEAR.1ST.SIDE)</ProgramComment>
+					<Block dataItemId="path508_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="block" sequence="4908">G00 G40 G97 Z10.000</Block>
+					<PartCount dataItemId="path509_01" timestamp="2017-07-29T03:53:44.238Z"
+						name="part_count" sequence="338">34</PartCount>
+				</Events>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="X"
+				componentId="x5_01">
+				<Samples>
+					<Position dataItemId="x51_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="Xact" sequence="4911" subType="ACTUAL">-213.396</Position>
+					<Load dataItemId="x52_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="Xload" sequence="4912" subType="ACTUAL">41</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="x53_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xtravel" sequence="267" type="POSITION" />
+					<Normal dataItemId="x54_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xoverheat" sequence="268" type="TEMPERATURE" />
+					<Normal dataItemId="x55_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Xservo" sequence="269" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Y"
+				componentId="y5_01">
+				<Samples>
+					<Position dataItemId="y51_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yact" sequence="236" subType="ACTUAL">UNAVAILABLE</Position>
+					<Load dataItemId="y52_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yload" sequence="237" subType="ACTUAL">UNAVAILABLE</Load>
+				</Samples>
+				<Condition>
+					<Unavailable dataItemId="y53_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Ytravel" sequence="238" type="POSITION" />
+					<Unavailable dataItemId="y54_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yoverheat" sequence="239" type="TEMPERATURE" />
+					<Unavailable dataItemId="y55_01" timestamp="2017-07-29T03:53:43.853933Z"
+						name="Yservo" sequence="240" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+			<ComponentStream component="Linear" name="Z"
+				componentId="z5_01">
+				<Samples>
+					<Position dataItemId="z51_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="Zact" sequence="4913" subType="ACTUAL">-287.837</Position>
+					<Load dataItemId="z52_01" timestamp="2017-07-29T03:54:39.538Z"
+						name="Zload" sequence="4914" subType="ACTUAL">80</Load>
+				</Samples>
+				<Condition>
+					<Normal dataItemId="z53_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Ztravel" sequence="270" type="POSITION" />
+					<Normal dataItemId="z54_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zoverheat" sequence="271" type="TEMPERATURE" />
+					<Normal dataItemId="z55_01" timestamp="2017-07-29T03:53:43.919Z"
+						name="Zservo" sequence="272" type="LOAD" />
+				</Condition>
+			</ComponentStream>
+		</DeviceStream>
+	</Streams>
+</MTConnectStreams>
+

@@ -23,7 +23,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.jayway.jsonpath.JsonPath;
-
+/**
+ * 
+ * @author vipul
+ * This is an Integration Test Suite for mdata dashboard application.
+ */
 @ActiveProfiles("dev")
 @RunWith(SpringRunner.class)
 @WebMvcTest
