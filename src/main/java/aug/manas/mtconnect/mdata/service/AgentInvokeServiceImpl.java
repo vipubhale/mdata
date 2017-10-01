@@ -10,11 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import aug.manas.mtconnect.mdata.config.ConfigBean;
+import aug.manas.mtconnect.mdata.exception.AgentNotAvailableException;
 import aug.manas.mtconnect.mdata.model.MachineData;
 import aug.manas.mtconnect.mtdata.stubs.ComponentStreamType;
 import aug.manas.mtconnect.mtdata.stubs.ConditionListType;
@@ -42,31 +44,51 @@ public class AgentInvokeServiceImpl {
     }
     
 	/**
-	 * 
-	 * @return
+	 * Calls the backend Agent
+	 * @return MTConnectStreamsType
 	 * @throws RestClientException
+	 * @throws AgentNotAvailableException 
 	 */
-	public MTConnectStreamsType issueRestCall() throws RestClientException{
+	public MTConnectStreamsType issueRestCall() throws AgentNotAvailableException{
 		logger.debug("Entering the issueRestCall method.");
 		logger.debug("Creating the RestTemplate instance.");
 		
 		MTConnectStreamsType mtConnectStream = null;
+		ResponseEntity<MTConnectStreamsType> mtConnectStreamEntity = null;
 
-			if (nextSequence == null){
-				logger.debug("NextSequence is null calling the Agent.");
-				mtConnectStream = restTemplate.getForObject(config.getAgentEndpoint()+"?from{nextsequence}", MTConnectStreamsType.class, nextSequence);
+		try {
+			if (nextSequence != null) {
+				logger.debug("NextSequence is  not null calling the Agent.");
+				mtConnectStreamEntity = restTemplate.getForEntity(config.getAgentEndpoint() + "?from{nextsequence}",
+						MTConnectStreamsType.class, nextSequence);
+				mtConnectStream = mtConnectStreamEntity.getBody();
+
+			} else {
+				logger.debug("NextSequence is   null calling the Agent.");
+				mtConnectStreamEntity = restTemplate.getForEntity(config.getAgentEndpoint() + "?from",
+						MTConnectStreamsType.class);
+				mtConnectStream = mtConnectStreamEntity.getBody();
+			}
+		} catch (RestClientException e) {
+			logger.error("Error while calling the agent");
+			
+			if (mtConnectStreamEntity != null && mtConnectStreamEntity.getStatusCodeValue() != 200) {
+				throw new AgentNotAvailableException("Agent Not available", mtConnectStreamEntity.getStatusCodeValue());
 			}
 			else {
-				mtConnectStream = restTemplate.getForObject(config.getAgentEndpoint(), MTConnectStreamsType.class);
+				throw new AgentNotAvailableException("Agent Not available", 500);
 			}
+		}
+
 			logger.debug("Leaving the issueRestCall method.");
 		return mtConnectStream;
 	}
 
 	/**
+	 * This method parses the response from MTConnect Agent and returns the parsedData
 	 * 
-	 * @param mtConnectStream
-	 * @return
+	 * @param mtConnectStream type data got from Agent
+	 * @return ArrayList of MachineData. 
 	 */
 	public ArrayList<MachineData> parsingTheResponse(MTConnectStreamsType mtConnectStream){
 		logger.debug("Entering the issueRestCall method.");

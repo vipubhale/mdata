@@ -1,46 +1,41 @@
 <!DOCTYPE HTML>
 <html ng-app="mtdata">
 <head>
-<title>Bharat Automotive</title>
+<title>MDataDashboard</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.css">
 <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
+	<div class="header">
+		<nav class="navbar navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">MdataDashboard</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="https://github.com/vipubhale/mdata">help</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<br>
+
 	<div ng-controller="getData">
-		<!-- 		<table>
-			<tr>
-				<th>Sr.No</th>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Part Count</th>
-
-				<th>ActiveAxes</th>
-				<th>S1 Speed</th>
-				<th>S1 Load</th>
-				<th>Speed Ovr</th>
-				<th>Speed Servo</th>
-			</tr>
-			<tr ng-repeat="x in machinesData">
-				<td>{{ $index +1 }}</td>
-				<td>{{ x.machineId }}</td>
-				<td>{{ x.machineName }}</td>
-				<td>{{ x.partCount }}</td>
-				<td>{{ x.activeAxes }}</td>
-				<td>{{ x.s1Speed }}</td>
-				<td>{{ x.s1Load }}</td>
-				<td>{{ x.sSpeedOvr }}</td>
-				<td>{{ x.s1Servo }}</td>
-
-			</tr>
-		</table> -->
-		<table>
+		<div id="error" ng-if="errorData != ''">
+			<p>
+				<b>{{ errorData }}</b>
+			</p>
+		</div>
+		<br>
+		<table ng-if="numberOfMachines != 0">
 			<thead>
 				<tr>
 					<th id="header"
 						ng-repeat="n in getNumber(numberOfMachines) track by $index">
-						<div ng-if="$index == 0 && numberOfMachines != 0">Machines</div>
+						<div ng-if="$index == 0 && numberOfMachines != 0">Properties/
+							Machines</div>
 						<div ng-if="$index > 0">Machine {{$index}}</div>
 					</th>
 				</tr>
@@ -53,15 +48,18 @@
 			</tbody>
 		</table>
 		<br>
-		<div id="error" ng-if="errorData != ''">
-			<p>
-				<b>{{ errorData }}</b>
-			</p>
-		</div>
+
 	</div>
 	<script src="/webjars/angularjs/1.6.4/angular.js"></script>
 	<script src="/webjars/angularjs/1.6.4/angular-resource.js"></script>
 	<script src="/webjars/angularjs/1.6.4/angular-route.js"></script>
 	<script src="/js/app.js"></script>
 </body>
+<div id="footer">
+	<div class="footer">
+		<nav class="navbar navbar-fixed-bottom">
+			<div class="container-fluid"></div>
+		</nav>
+	</div>
+</div>
 </html>

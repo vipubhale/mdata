@@ -1,6 +1,31 @@
 @CHARSET "UTF-8";
 
 <style>
+.navbar a {
+ 	background-color: #c8e2ee;
+ 	color: black;
+}
+
+.navbar-brand > a:hover,
+.navbar-brand > a:focus,
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+	background-color: #428bca;
+    color: white;
+}
+
+.navbar-nav{
+	color : black;
+}
+.navbar{
+ 	background-color: #c8e2ee;
+ 	color: white;
+}
+.navbar-brand{
+	background-color: #c8e2ee;
+ 	color: black;
+}
+
 table {
 	width ="50%";
 	border-collapse: collapse;
