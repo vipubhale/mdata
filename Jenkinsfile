@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
-                git([url: 'https://github.com/vipubhale/mdata', branch: 'master'])
+                git([url: 'https://github.com/vipubhale/mdata'])
                 //def mvnHome = tool 'maven_3.3.9'
                 sh '''
                     echo "PATH = ${PATH}"
@@ -39,11 +39,12 @@ pipeline {
             steps {
                 echo 'This is package phase.'
                 sh "${M2_HOME}/bin/mvn clean package"
+                sh "rm -rf /tmp/mdata*"
                 sh "cp /var/jenkins_home/workspace/mdata-dashboard-app/target/mdata-0.0.8-beta-distribution.zip /tmp/"
                 sh "cd /tmp/"
-                sh "unzip mdata-0.0.8-beta-distribution.zip"
+                sh "unzip -o /tmp/mdata-0.0.8-beta-distribution.zip -d /tmp/"
+                sh "chmod +x /tmp/mdata-0.0.8-beta/unix/bin/run.sh"
             }
         }
     }
 }
-
