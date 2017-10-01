@@ -49,14 +49,10 @@ public class ITestMDataController {
 
 	
 	private JAXBElement<MTConnectStreamsType> mtConnectStreamjaxb;
-//	private ArrayList<MachineData> svcMockResultList;
-//	private ArrayList<MachineData> svcResultList;
-
 
 	@MockBean
 	private AgentInvokeServiceImpl agentInvokeService;
-	
-	
+		
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -80,10 +76,6 @@ public class ITestMDataController {
 		// Use Mockito when clauses to return the ParsedResponse for parsingTheResponse method. Mock it as a real call
 		when(this.agentInvokeService.parsingTheResponse(mtConnectStreamjaxb.getValue())).thenCallRealMethod();
 		
-//		mvcResult = this.mockMvc.perform(get("/data")).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
-//				.andExpect(jsonPath("$", iterableWithSize(5))).andReturn();
-
 		mvcResult = this.mockMvc.perform(get("/data")).andReturn();
 
 		contentDataControllerOutput = mvcResult.getResponse().getContentAsString();
@@ -123,13 +115,7 @@ public class ITestMDataController {
 	@Test
 	public void shouldReturnMultipleMachinesData() throws Exception {
 		assertNotNull(contentDataControllerOutput);
-		;
 		assertThat(JsonPath.read(contentDataControllerOutput, "$"),iterableWithSize(5) );
-//		
-//		this.mockMvc.perform(get("/data")).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
-//				.andExpect(jsonPath("$", iterableWithSize(5)));
-
 	}
 
 	/**
