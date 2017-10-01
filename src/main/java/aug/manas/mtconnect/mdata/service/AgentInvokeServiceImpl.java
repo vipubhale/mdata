@@ -53,7 +53,6 @@ public class AgentInvokeServiceImpl {
 
 			if (nextSequence == null){
 				logger.debug("NextSequence is null calling the Agent.");
-				System.out.println(restTemplate == null? true : false);
 				mtConnectStream = restTemplate.getForObject(config.getAgentEndpoint()+"?from{nextsequence}", MTConnectStreamsType.class, nextSequence);
 			}
 			else {

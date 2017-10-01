@@ -50,7 +50,6 @@ public class MDataServiceImpl implements MDataService {
 		MTConnectStreamsType mtConnectStream = null;
 		try {
 			logger.debug("Calling the issueRestCall method");
-			System.out.println(agentInvokeService);
 			mtConnectStream = agentInvokeService.issueRestCall();
 			logger.debug("MtConnect Stream data is :: "+mtConnectStream.getStreams().getDeviceStream().toString());
 

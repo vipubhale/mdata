@@ -2,43 +2,27 @@ package aug.manas.mtconnect.mdata.itest;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.iterableWithSize;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.Arrays;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.jayway.jsonpath.JsonPath;
-
-import aug.manas.mtconnect.mdata.service.AgentInvokeServiceImpl;
-import aug.manas.mtconnect.mtdata.stubs.MTConnectStreamsType;
 /**
  * 
  * @author vipul
@@ -47,18 +31,8 @@ import aug.manas.mtconnect.mtdata.stubs.MTConnectStreamsType;
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @WebMvcTest
-public class ITestMDataController {
+public class ITestMDataControllerUsingSOAPUI {
 
-	
-	private JAXBElement<MTConnectStreamsType> mtConnectStreamjaxb;
-//	private ArrayList<MachineData> svcMockResultList;
-//	private ArrayList<MachineData> svcResultList;
-
-
-	@MockBean
-	private AgentInvokeServiceImpl agentInvokeService;
-	
-	
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -67,40 +41,11 @@ public class ITestMDataController {
 
 	@Before
 	public void setup() throws Exception {
-	    MockitoAnnotations.initMocks(this);
-
-		//Reading the xml file and create a dummy response for Agent
-		JAXBContext jc = JAXBContext.newInstance(MTConnectStreamsType.class);
-		Unmarshaller unmarshaller = jc.createUnmarshaller();
-		File xml = new File("src/test/resources/MData_unittest.xml");
-		InputStream inputStream = new FileInputStream(xml);
-		Source source = new StreamSource(inputStream);
-		mtConnectStreamjaxb = unmarshaller.unmarshal(source, MTConnectStreamsType.class);
-		
-		// Use Mockito when clauses to return the AgentResponse for issueRestCall method
-		when(this.agentInvokeService.issueRestCall()).thenReturn(mtConnectStreamjaxb.getValue());
-		// Use Mockito when clauses to return the ParsedResponse for parsingTheResponse method. Mock it as a real call
-		when(this.agentInvokeService.parsingTheResponse(mtConnectStreamjaxb.getValue())).thenCallRealMethod();
-		
-//		mvcResult = this.mockMvc.perform(get("/data")).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
-//				.andExpect(jsonPath("$", iterableWithSize(5))).andReturn();
-
-		mvcResult = this.mockMvc.perform(get("/data")).andReturn();
+		mvcResult = this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$", iterableWithSize(5))).andReturn();
 
 		contentDataControllerOutput = mvcResult.getResponse().getContentAsString();
-	}
-	
-	/**
-	 * Test the index.html is returned for / uri
-	 * @throws Exception
-	 */
-	@Test
-	public void shouldReturnIndexPage() throws Exception{
-		MvcResult resultRedirection = this.mockMvc.perform(get("/")).andExpect(status().is3xxRedirection()).andReturn();
-		String strLocationHeader = resultRedirection.getResponse().getHeader("Location");
-		assertNotNull(strLocationHeader);
-		assertEquals("/index.html", strLocationHeader);
 	}
 
 	/**
@@ -111,26 +56,22 @@ public class ITestMDataController {
 	 */
 	@Test
 	public void shouldReturnJsonContent() throws Exception {
-		this.mockMvc.perform(get("/data")).andExpect(status().isOk())
+		this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"));
 
 	}
 
 	/**
 	 * Test the MDataController's response when SOAP UI is running. This test
-	 * makes sure response data of type JSON and having multiple machine data.
-	 * Precisely test for 5 machines in the machineData.
+	 * makes sure response data of type JSON and having multiple machine data
+	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void shouldReturnMultipleMachinesData() throws Exception {
-		assertNotNull(contentDataControllerOutput);
-		;
-		assertThat(JsonPath.read(contentDataControllerOutput, "$"),iterableWithSize(5) );
-//		
-//		this.mockMvc.perform(get("/data")).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
-//				.andExpect(jsonPath("$", iterableWithSize(5)));
+		this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$", iterableWithSize(5)));
 
 	}
 

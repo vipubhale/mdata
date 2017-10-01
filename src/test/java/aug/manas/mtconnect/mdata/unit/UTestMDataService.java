@@ -55,14 +55,11 @@ public class UTestMDataService {
 	private MDataServiceImpl mdataService;
 	
 	/**
-	 * 
-	 * @throws JAXBException
-	 * @throws FileNotFoundException
-	 * 
+	 *
 	 * Setup.
 	 */
 	@Before
-	public void setup() throws JAXBException, FileNotFoundException {
+	public void setup()  {
 	    MockitoAnnotations.initMocks(this);
 	}
 
