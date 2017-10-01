@@ -39,8 +39,8 @@ pipeline {
             steps {
                 echo 'This is package phase.'
                 sh "${M2_HOME}/bin/mvn clean package"
-                sh "cp /var/jenkins_home/workspace/mdata-dashboard-app/target/mdata-0.0.8-beta-distribution.zip /tmp/temp/"
-                sh "cd /tmp/temp"
+                sh "cp /var/jenkins_home/workspace/mdata-dashboard-app/target/mdata-0.0.8-beta-distribution.zip /tmp/"
+                sh "cd /tmp/"
                 sh "unzip mdata-0.0.8-beta-distribution.zip"
             }
         }
