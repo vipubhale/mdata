@@ -21,14 +21,15 @@
 		</nav>
 	</div>
 	<br>
-	<div id="error" ng-if="errorData != ''">
-		<p>
-			<b>{{ errorData }}</b>
-		</p>
-	</div>
-	<br>
+
 	<div ng-controller="getData">
-		<table>
+		<div id="error" ng-if="errorData != ''">
+			<p>
+				<b>{{ errorData }}</b>
+			</p>
+		</div>
+		<br>
+		<table ng-if="numberOfMachines != 0">
 			<thead>
 				<tr>
 					<th id="header"
@@ -55,10 +56,9 @@
 	<script src="/js/app.js"></script>
 </body>
 <div id="footer">
-	<div class="header">
+	<div class="footer">
 		<nav class="navbar navbar-fixed-bottom">
-			<div class="container-fluid">
-			</div>
+			<div class="container-fluid"></div>
 		</nav>
 	</div>
 </div>

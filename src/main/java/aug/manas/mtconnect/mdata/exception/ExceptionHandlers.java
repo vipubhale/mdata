@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import aug.manas.mtconnect.mdata.model.ErrorResponseMsg;
+
 @ControllerAdvice
 public class ExceptionHandlers {
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseStatus(HttpStatus.OK)
 	@ExceptionHandler(value = AgentNotAvailableException.class)
 	@ResponseBody
-	public String handleConflict() {
-		return "Error while Calling Agent";
+	public ErrorResponseMsg handleConflict(AgentNotAvailableException ex) {
+		ErrorResponseMsg responseMsg = new ErrorResponseMsg(ex.getMessage(), ex.getStatusCode());
+		return responseMsg;
 	}
 }

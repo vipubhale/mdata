@@ -42,11 +42,6 @@ public class MDataController {
 		logger.debug("Calling the mdataService's callAgent method");
 		ArrayList<MachineData> alMachineData = mdataService.callAgent();
 		logger.debug("Ouput of callAgent method is :: ", alMachineData);
-
-		if (alMachineData == null){
-			logger.debug("Empty machine data list throwing exception :: ");
-			throw new AgentNotAvailableException("no data");
-		}
 		logger.debug("Leaving the data method corresponding to /data");
 		return alMachineData;
 	}
