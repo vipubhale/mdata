@@ -16,7 +16,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,7 +33,8 @@ import com.jayway.jsonpath.JsonPath;
  */
 @ActiveProfiles("test2")
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class ITestMDataControllerUsingDockerJenkins {
 
 	@Autowired
@@ -41,7 +45,7 @@ public class ITestMDataControllerUsingDockerJenkins {
 
 	@Before
 	public void setup() throws Exception {
-		mvcResult = this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
+		mvcResult = this.mockMvc.perform(get("/data")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(jsonPath("$", iterableWithSize(5))).andReturn();
 
@@ -56,7 +60,7 @@ public class ITestMDataControllerUsingDockerJenkins {
 	 */
 	@Test
 	public void shouldReturnJsonContent() throws Exception {
-		this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
+		this.mockMvc.perform(get("/data")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"));
 
 	}
@@ -69,7 +73,7 @@ public class ITestMDataControllerUsingDockerJenkins {
 	 */
 	@Test
 	public void shouldReturnMultipleMachinesData() throws Exception {
-		this.mockMvc.perform(get("/data")).andDo(print()).andExpect(status().isOk())
+		this.mockMvc.perform(get("/data")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(jsonPath("$", iterableWithSize(5)));
 

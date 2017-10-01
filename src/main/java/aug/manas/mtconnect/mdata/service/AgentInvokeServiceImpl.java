@@ -36,6 +36,7 @@ public class AgentInvokeServiceImpl {
 	
     private final RestTemplate restTemplate;
 
+    @Autowired
     public AgentInvokeServiceImpl(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
