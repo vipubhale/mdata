@@ -8,10 +8,10 @@ app.controller('getData', function($scope, $http, $interval) {
 					$scope.getNumber = function(num) {
 					    return new Array(num+1);   
 					}
-					$scope.machinesData = response.data;
+//					$scope.machinesData = response.data;
 					var machineDataFromBackend = response.data;
 
-					machineDataMap={};
+					var machineDataMap={};
 				    angular.forEach(machineDataFromBackend,function(machine,arrayIndex){
 				        angular.forEach(machine,function(machineValue,machineKey){//this is nested angular.forEach loop
 				        	if (machineDataMap[machineKey] == null  ) {
@@ -28,8 +28,8 @@ app.controller('getData', function($scope, $http, $interval) {
 				    $scope.modifiedMachinesdata = machineDataMap;
 		            $scope.errorData = "";
 					
-				},function error(response) {
-					$scope.errorCode = response.status;
+				},function error(error, status) {
+					$scope.errorCode = status;
 					if ($scope.errorCode == '500'){
 						console.log('Error while calling the agent '+ $scope.errorCode);
 						$scope.errorData = "Error Calling the Agent. HTTP Status Code is " + $scope.errorCode  ;
@@ -38,7 +38,7 @@ app.controller('getData', function($scope, $http, $interval) {
 					}
 					
 				});
-		  }, 5000);
+		  }, 3000);
 //		
 //
 //	}
