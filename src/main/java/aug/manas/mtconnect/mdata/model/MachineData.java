@@ -1,9 +1,11 @@
 package aug.manas.mtconnect.mdata.model;
 
 public class MachineData {
+
+
 	private String machineId;
 	private String machineName;
-	private String partCount;
+	private int partCount;
 	private String activeAxes;
 	
 	private String s1Speed;
@@ -20,8 +22,24 @@ public class MachineData {
 	public MachineData(){
 		
 	}
-
-	public MachineData(String machineId, String machineName, String partCount, String activeAxes, String s1Speed,
+	/**
+	 * 
+	 * @param machineId
+	 * @param machineName
+	 * @param partCount
+	 * @param activeAxes
+	 * @param s1Speed
+	 * @param s1Load
+	 * @param sSpeedOvr
+	 * @param s1Servo
+	 * @param servo
+	 * @param comms
+	 * @param logic
+	 * @param motion
+	 * @param system
+	 */
+	
+	public MachineData(String machineId, String machineName, int partCount, String activeAxes, String s1Speed,
 			String s1Load, String sSpeedOvr, String s1Servo, String servo, String comms, String logic, String motion,
 			String system) {
 		super();
@@ -56,11 +74,11 @@ public class MachineData {
 		this.machineName = machineName;
 	}
 
-	public String getPartCount() {
+	public int getPartCount() {
 		return partCount;
 	}
 
-	public void setPartCount(String partCount) {
+	public void setPartCount(int partCount) {
 		this.partCount = partCount;
 	}
 
@@ -144,8 +162,57 @@ public class MachineData {
 		this.system = system;
 	}
 	
+	
+	/**
+	 * 
+	 */
+	
+	
+	/**
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return "MachineData [machineId=" + machineId + ", machineName=" + machineName + ", partCount=" + partCount
+				+ ", activeAxes=" + activeAxes + ", s1Speed=" + s1Speed + ", s1Load=" + s1Load + ", sSpeedOvr="
+				+ sSpeedOvr + ", s1Servo=" + s1Servo + ", servo=" + servo + ", comms=" + comms + ", logic=" + logic
+				+ ", motion=" + motion + ", system=" + system + "]";
+	}
 
-
-
-
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		MachineData machineData = null;
+		if (obj != null && obj instanceof MachineData){
+			machineData = (MachineData) obj;
+		}
+		if (
+				machineData.getMachineName().equalsIgnoreCase(this.getMachineName()) 
+				&& 
+				machineData.getMachineId().equalsIgnoreCase(this.getMachineId()) 
+				&&
+				machineData.getPartCount() == this.getPartCount() 
+				&&
+				machineData.getActiveAxes().equalsIgnoreCase(this.getActiveAxes()) 
+				&&
+				machineData.getS1Speed().equalsIgnoreCase(this.getS1Speed())
+				&&
+				machineData.getS1Load().equalsIgnoreCase(this.getS1Load())
+				&&
+				machineData.getsSpeedOvr().equalsIgnoreCase(this.getsSpeedOvr())
+				&&
+				machineData.getServo().equalsIgnoreCase(this.getServo())
+				&&
+				machineData.getComms().equalsIgnoreCase(this.getComms())
+				&&
+				machineData.getLogic().equalsIgnoreCase(this.getLogic())
+				&&
+				machineData.getMotion().equalsIgnoreCase(this.getMotion())
+				&&
+				machineData.getSystem().equalsIgnoreCase(this.getSystem())
+				){
+			return true;
+		}
+		return false;
+	}
 }

@@ -4,6 +4,6 @@
     <description>This runs a mdata app as a Service.</description>
     <env name="MDATA_HOME" value="%BASE%"/>
     <executable>java</executable>
-    <arguments>-Xmx256m -jar "%BASE%\mdata-0.0.8-beta.jar"</arguments>
+    <arguments>-Xmx256m -Dspring.profiles.active=prod -jar "%BASE%\mdata-0.0.8-beta.jar"</arguments>
     <logmode>rotate</logmode>
 </service>
