@@ -59,6 +59,8 @@ To install this dashboard you would need maven and java 1.8 installed on your ma
           ```
 It will install the job as service. Once the service is started mdata.wrapper in the directory where its copied will give you logs for the process, mdata.out will have system out logs for java app, mdata.err will have system error logs for java app.
 
+* For more advanced users you can use Jenkinsfile in the repository to integrate with Jenkins and do the automated build. 
+
 ### Testing locally
 If you want to evaluate this application. You can do the testing with SOAP UI as backend instead of agent.
 
