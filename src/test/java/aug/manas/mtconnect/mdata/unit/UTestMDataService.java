@@ -1,7 +1,6 @@
 package aug.manas.mtconnect.mdata.unit;
 
 import static org.junit.Assert.assertEquals;
-
 import static org.mockito.Mockito.when;
 
 import java.io.File;
@@ -9,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -44,8 +44,8 @@ import aug.manas.mtconnect.mtdata.stubs.MTConnectStreamsType;
 public class UTestMDataService {
 	
 	private JAXBElement<MTConnectStreamsType> mtConnectStreamjaxb;
-	private ArrayList<MachineData> svcMockResultList;
-	private ArrayList<MachineData> svcResultList;
+	private List<MachineData> svcMockResultList;
+	private List<MachineData> svcResultList;
 
 
 	@Mock

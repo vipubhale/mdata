@@ -90,7 +90,7 @@ public class AgentInvokeServiceImpl {
 	 * @param mtConnectStream type data got from Agent
 	 * @return ArrayList of MachineData. 
 	 */
-	public ArrayList<MachineData> parsingTheResponse(MTConnectStreamsType mtConnectStream){
+	public List<MachineData> parsingTheResponse(MTConnectStreamsType mtConnectStream){
 		logger.debug("Entering the issueRestCall method.");
 
 		ArrayList<MachineData> alMachineData = new ArrayList<>();

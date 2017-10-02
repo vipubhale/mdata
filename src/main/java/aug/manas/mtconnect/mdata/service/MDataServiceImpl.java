@@ -1,11 +1,12 @@
 package aug.manas.mtconnect.mdata.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import aug.manas.mtconnect.mdata.exception.AgentNotAvailableException;
 import aug.manas.mtconnect.mdata.model.MachineData;
 import aug.manas.mtconnect.mtdata.stubs.MTConnectStreamsType;
@@ -27,9 +28,9 @@ public class MDataServiceImpl implements MDataService {
 	 * @return ArrayList of MachineData
 	 * @throws AgentNotAvailableException
 	 */
-	public ArrayList<MachineData> callAgent() throws AgentNotAvailableException {
+	public List<MachineData> callAgent() throws AgentNotAvailableException {
 		logger.debug("Entering the callAgent method.");
-		ArrayList<MachineData> alMachineData = null;
+		List<MachineData> alMachineData = null;
 		MTConnectStreamsType mtConnectStream = null;
 		logger.debug("Calling the issueRestCall method");
 		mtConnectStream = agentInvokeService.issueRestCall();
