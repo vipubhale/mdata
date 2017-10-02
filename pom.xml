@@ -81,8 +81,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				<configuration>
+<!-- 				<version>2.18.1</version>
+ -->				<configuration>
 					<argLine>${surefireArgLine}</argLine>
 
 					<includes>
@@ -93,8 +93,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.15</version>
-				<executions>
+<!-- 				<version>2.15</version>
+ -->				<executions>
 					<!-- Ensures that both integration-test and verify goals of the Failsafe 
 						Maven plugin are executed. -->
 					<execution>
@@ -146,13 +146,6 @@
 							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
 						</configuration>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.5.201505241946</version>
-				<executions>
 					<!-- The Executions required by unit tests are omitted. -->
 					<!-- Prepares the property pointing to the JaCoCo runtime agent which 
 						is passed as VM argument when Maven the Failsafe plugin is executed. -->
