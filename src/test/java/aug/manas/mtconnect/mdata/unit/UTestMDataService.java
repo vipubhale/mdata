@@ -65,12 +65,12 @@ public class UTestMDataService {
 
 	/**
 	 * 
+	 * This is a unit test for Service.
 	 * 
 	 * @throws JAXBException
 	 * @throws FileNotFoundException
 	 * @throws AgentNotAvailableException
 	 *  
-	 * This is a unit test for Service.
 	 */
 	@Test
 	public void unitTestServiceCallAgent() throws JAXBException, FileNotFoundException, AgentNotAvailableException {
@@ -115,6 +115,24 @@ public class UTestMDataService {
 		for (int i = 0; i < svcResultList.size(); i++) {
 			assertEquals(svcMockResultList.get(i), svcResultList.get(i));
 		}
+	}
+
+	/**
+	 * 
+	 * 
+	 * @throws JAXBException
+	 * @throws FileNotFoundException
+	 * @throws AgentNotAvailableException
+	 *  
+	 * This is a unit test for Service to check for AgentNotAvailableException when agent goes down.
+	 */
+	@Test(expected = AgentNotAvailableException.class)
+	public void unitTestServiceCallAgenForException() throws JAXBException, FileNotFoundException,AgentNotAvailableException {
+		// Use Mockito when clauses to return the AgentResponse for issueRestCall method
+		when(this.agentInvokeService.issueRestCall()).thenThrow(new AgentNotAvailableException("Agent not available.", 500));
+
+		//Actually calling the service and capture the response
+		this.mdataService.callAgent();
 	}
 
 }
