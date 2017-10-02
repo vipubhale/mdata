@@ -29,38 +29,40 @@ To install this dashboard you would need maven and java 1.8 installed on your ma
     git clone https://github.com/vipubhale/mdata.git
     ```
 * In case your agent is running on different machine modify the src/main/resources/config/application-prod.properties as below:
-  ```
+    ```
     agent.endpoint=http://localhost:5020/current   #change localhost:5020 to domain or ip:port combination     
     ```
-    If you are testing application on local using SOAP UI keep the properties file as it is
+    For testing application on local machine using SOAP UI as mock backend, you dont't need to change properties file.
 * Do the maven build
-  ``` maven
+    ``` maven
     cd mdata
     mvn clean package
     ```
-* This will create a zip file in the target directory of your workspace
-  ``` sh
+* This will create a zip file in the **target** directory of your workspace
+    ``` sh
+    cd target
     cp mdata-0.0.8-beta-distribution.zip <destrination_directory>
     cd <destrination_directory>
     unzip mdata-0.0.8-beta-distribution.zip
     ```
 * After unzipping file you will get **mdata-0.0.8-beta** directory. This should contain 2 directories 
-    1. unix
+  1. unix
       * Inside this directory there is run.sh file. Please issue below commands
-      ``` sh
-        cd unix
-        mdata-0.0.8-beta/bin/run.sh     
-        ```
+          ``` sh
+          cd mdata-0.0.8-beta/unix/mdata-0.0.8-beta/bin/
+          chmod +x run.sh
+          ./run.sh     
+          ```
         \**assuming after unzipping directory is not changed*
 
     2. windows
        * After unzipping, copy the directory mdata-0.0.8 to C:/Program Files. So directory would be c:\Program Files\mdata-0.0.8-beta.
-     * Open command prompt(as administrator) and issue below commands:
+       * Open command prompt(as administrator) and issue below commands:
           ``` bat
           cd c:\Program Files\mdata-0.0.8-beta\windows\
           mdata.exe install 
           ```
-      It will install the job as a service. Once the service is started, mdata.out will have system out logs for java app, mdata.err will have system error logs for java app.
+       * It will install the job as a service. Once the service is started, mdata.out will have system out logs for java app, mdata.err will have system error logs for java app.
 
 * Application URL for dashboard will be http://localhost:8080/. (Please wait for 3/4 seconds to load the UI.)
 * For more advanced users - use the **Jenkinsfile** in the repository to integrate with Jenkins and do automated builds.The Jenkinsfile has sample steps it can be enhanced as per use.  
