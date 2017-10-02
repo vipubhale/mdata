@@ -69,7 +69,7 @@ If you want to evaluate this application, you can do the testing with SOAP UI as
 * Run the mock service
 	* Open/expand the project mdata-mock-agent in SOAP UI
 	* Righclick on mock service mdata-mock-service and select 'start minimized'
-	* Ensure in browswer http://localhost:5020/current gives an xml
+	* Ensure in browser http://localhost:5020/current gives an xml
 * Run the application as per the Install section mentiond above.
 
 ### Enhancement for future
@@ -77,6 +77,6 @@ If you want to evaluate this application, you can do the testing with SOAP UI as
 * UI enhancement for search capabilities.
 * Rearchitecting the whole flow and including database to persist the data for analytics purpose in future.
 
-Any feedback on this is appreciated. Also please report the bug in issues section here. 
+Any feedback on this is appreciated. Also please report bugs in issues section here. 
 
 Happy information driven manufacturing :+1:
