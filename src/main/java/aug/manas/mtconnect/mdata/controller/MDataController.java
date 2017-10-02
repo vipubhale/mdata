@@ -1,7 +1,6 @@
 package aug.manas.mtconnect.mdata.controller;
 
-import java.util.ArrayList;
-
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,10 +36,10 @@ public class MDataController {
 	 * @throws AgentNotAvailableException
 	 */
 	@RequestMapping(value = "/data", method = RequestMethod.GET, produces = "application/json")
-	public ArrayList<MachineData> data() throws AgentNotAvailableException {
+	public List<MachineData> data() throws AgentNotAvailableException {
 		logger.debug("Entering the data method corresponding to /data");
 		logger.debug("Calling the mdataService's callAgent method");
-		ArrayList<MachineData> alMachineData = mdataService.callAgent();
+		List<MachineData> alMachineData = mdataService.callAgent();
 		logger.debug("Ouput of callAgent method is :: ", alMachineData);
 		logger.debug("Leaving the data method corresponding to /data");
 		return alMachineData;
