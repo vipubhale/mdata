@@ -1,6 +1,7 @@
 package aug.manas.mtconnect.mdata.itest;
 
 import static org.hamcrest.Matchers.hasItem;
+
 import static org.hamcrest.Matchers.iterableWithSize;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -35,6 +36,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.jayway.jsonpath.JsonPath;
 
+import aug.manas.mtconnect.mdata.exception.AgentNotAvailableException;
 import aug.manas.mtconnect.mdata.service.AgentInvokeServiceImpl;
 import aug.manas.mtconnect.mtdata.stubs.MTConnectStreamsType;
 /**
@@ -376,5 +378,27 @@ public class ITestMDataController {
 			assertThat(Arrays.asList(systems), hasItem(system));
 		}
 
+	}
+	
+	/**
+	 * Test the controller when AgentNotAvailableException is thrown.
+	 * 
+	 * @throws Exception 
+	 */
+	@Test
+	public void unitTestServiceCallAgenForException() throws Exception {
+		// Use Mockito when clauses to return the AgentResponse for issueRestCall method
+		when(this.agentInvokeService.issueRestCall()).thenThrow(new AgentNotAvailableException("Agent not available.", 500));
+		MvcResult mvcResultException = this.mockMvc.perform(get("/data")).andReturn();
+
+		String contentDataForAgentNotAvailableException = mvcResultException.getResponse().getContentAsString();
+		assertNotNull(contentDataForAgentNotAvailableException);
+		
+		String message = JsonPath.read(contentDataForAgentNotAvailableException, "$.message");
+		int code = JsonPath.read(contentDataForAgentNotAvailableException, "$.code");
+		assertNotNull(message);
+		assertNotNull(code);
+		assertEquals(message, "Agent not available.");
+		assertEquals(code, 500);
 	}
 }
